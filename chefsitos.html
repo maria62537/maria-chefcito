@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chefsitos Creando Arte</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --primary-light: #ff8a8a;
+            --secondary-color: #4ECDC4;
+            --secondary-light: #70e8e0;
+            --accent-color: #FFD166;
+            --accent-light: #ffe299;
+            --dark-color: #2F4858;
+            --light-color: #F7FFF7;
+            --gradient-bg: linear-gradient(135deg, #FF6B6B, #FFD166);
+            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            background-image: url("imagenes/pattern-bg.png");
+            background-attachment: fixed;
+            color: var(--dark-color);
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 80px 0 100px;
+            text-align: center;
+            border-bottom: 10px solid var(--accent-color);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('imagenes/header-pattern.png');
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.7rem;
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 25px;
+        }
+
+        .header-icon {
+            font-size: 3rem;
+            color: white;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+
+        nav {
+            background: var(--dark-color);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        nav .container {
+            padding: 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 25px 30px;
+            display: block;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a.active {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 5px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 80%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 80px 0 50px;
+            color: var(--primary-color);
+            font-size: 3.2rem;
+            font-weight: 800;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 120px;
+            height: 8px;
+            background: var(--accent-color);
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 900px;
+            margin: -30px auto 50px;
+            font-size: 1.3rem;
+            color: #555;
+        }
+
+        .fruits-veggies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 6px solid var(--primary-color);
+        }
+
+        .benefit-card:nth-child(2n) {
+            border-top-color: var(--secondary-color);
+        }
+
+        .benefit-card:nth-child(3n) {
+            border-top-color: var(--accent-color);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            background: var(--light-color);
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-card h3 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .nutrients-list {
+            text-align: left;
+            list-style-position: inside;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .nutrients-list li {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .nutrients-list li strong {
+            color: var(--secondary-color);
+        }
+
+        .recipe-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 25px;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .recipe-card:hover .recipe-image {
+            transform: scale(1.1);
+        }
+
+        .recipe-content {
+            padding: 30px;
+        }
+
+        .recipe-title {
+            color: var(--dark-color);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .recipe-details {
+            display: flex;
+            margin: 20px 0;
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .recipe-detail {
+            display: flex;
+            align-items: center;
+            margin-right: 25px;
+        }
+
+        .recipe-detail i {
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+
+        .recipe-description {
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .recipe-button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .recipe-button i {
+            margin-left: 10px;
+        }
+
+        .recipe-button:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .imc-calculator {
+            background: white;
+            border-radius: 25px;
+            box-shadow: var(--box-shadow);
+            padding: 50px;
+            max-width: 800px;
+            margin: 60px auto;
+            position: relative;
+            border-top: 8px solid var(--accent-color);
+        }
+
+        .imc-calculator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('imagenes/nutrition-pattern.png');
+            opacity: 0.08;
+            border-radius: 25px;
+        }
+
+        .imc-form {
+            display: grid;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #e1e1e1;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.25);
+            outline: none;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 22px;
+            height: 22px;
+        }
+
+        .radio-option label {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .calculate-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.35);
+        }
+
+        .calculate-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.45);
+        }
+
+        .imc-result {
+            margin-top: 40px;
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px dashed #ddd;
+            display: none;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .result-visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .result-text {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .result-text span {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .recommendations {
+            text-align: left;
+        }
+
+        .recommendations h4 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .recommendations ul {
+            list-style-type: none;
+        }
+
+        .recommendations li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .recommendations li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 1000px;
+            min-height: 80vh;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: white;
+            transform: rotate(90deg);
+        }
+
+        .recipe-details {
+            padding: 50px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .modal-recipe-title {
+            font-size: 3rem;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .modal-recipe-image {
+            width: 100%;
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .recipe-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #ddd;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 15px;
+        }
+
+        .info-item i {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+        }
+
+        .recipe-description {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .section-container {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ingredients-section h4, .preparation-section h4, .nutritional-info h4 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .ingredients-section h4 i, .preparation-section h4 i, .nutritional-info h4 i {
+            margin-right: 12px;
+        }
+
+        .ingredients-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .ingredients-list li {
+            padding: 8px 0;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .preparation-steps {
+            counter-reset: step;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .preparation-steps li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .preparation-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .nutritional-info {
+            margin-top: auto;
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nutrition-item {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .nutrition-item .label {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .nutrition-item .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .fruits-veggies-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .category-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .category-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category-content {
+            padding: 30px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .category-description {
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .featured-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .featured-item {
+            background: #f5f5f5;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            color: var(--dark-color);
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 80px 0 40px;
+            margin-top: 100px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(-45deg, transparent 12px, var(--dark-color) 0), 
+                        linear-gradient(45deg, transparent 12px, var(--dark-color) 0);
+            background-size: 24px 24px;
+            background-repeat: repeat-x;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-links i {
+            margin-right: 12px;
+            font-size: 0.9rem;
+        }
+
+        .footer-about p {
+            margin-bottom: 25px;
+            color: #ddd;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            background: rgba(255, 255, 255, 0.15);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-8px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        .authors {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        .authors span {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 3rem;
+            }
+            
+            header p {
+                font-size: 1.4rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                padding: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .imc-calculator {
+                padding: 40px 25px;
+            }
+            
+            .modal-content {
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
+                min-height: 100vh;
+                border-radius: 0;
+            }
+            
+            .close-modal {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .recipe-details {
+                padding: 25px;
+            }
+            
+            .modal-recipe-title {
+                font-size: 2.5rem;
+            }
+            
+            .modal-recipe-image {
+                height: 300px;
+            }
+            
+            .recipe-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .info-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Chefsitos Creando Arte</h1>
+            <p>¡Explora la magia de alimentarte con colores, sabores y diversión!</p>
+            <div class="header-icons">
+                <i class="fas fa-carrot header-icon"></i>
+                <i class="fas fa-apple-alt header-icon"></i>
+                <i class="fas fa-lemon header-icon"></i>
+                <i class="fas fa-pepper-hot header-icon"></i>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#beneficios" class="active"><i class="fas fa-apple-alt"></i> Frutas y Verduras</a></li>
+                <li><a href="#recetas"><i class="fas fa-utensils"></i> Recetas Creativas</a></li>
+                <li><a href="#calculadora"><i class="fas fa-calculator"></i> Calculadora IMC</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="beneficios">
+            <h2 class="section-title">Frutas y Verduras: Nuestras Aliadas</h2>
+            <p class="section-description">Las frutas y verduras son esenciales para el crecimiento, la energía y la salud de los niños. ¡Conoce sus superpoderes!</p>
+
+            <div class="fruits-veggies-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🍎</div>
+                    <h3>Fortalecen el sistema inmunológico</h3>
+                    <p>Repletas de vitaminas y antioxidantes, las frutas y verduras protegen el cuerpo contra enfermedades.</p>
+                    <ul class="nutrients-list">
+                        <li><strong>Vitamina C:</strong> Naranjas, kiwi, fresas, pimientos rojos</li>
+                        <li><strong>Vitamina A:</strong> Zanahorias, calabaza, mangos, espinacas</li>
+                        <li><strong>Zinc:</strong> Espinacas, calabacín, aguacate, guisantes</li>
+                        <li><strong>Antioxidantes:</strong> Arándanos, uvas, brócoli</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🥕</div>
+                    <h3>Mejoran la digestión</h3>
+                    <p>La fibra en frutas y verduras mantiene el sistema digestivo en óptimas condiciones y promueve la salud intestinal.</p>
+                    <ul class="nutrients-list">
+                        <li><strong>Fibra soluble:</strong> Manzanas, peras, zanahorias, avena</li>
+                        <li><strong>Fibra insoluble:</strong> Brócoli, coliflor, frutos secos, maíz</li>
+                        <li><strong>Prebióticos:</strong> Ajo, cebolla, plátano, espárragos</li>
+                        <li><strong>Agua:</strong> Pepino, sandía, apio</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🥦</div>
+                    <h3>Favorecen el crecimiento</h3>
+                    <p>Nutrientes esenciales como calcio y hierro apoyan el desarrollo de huesos fuertes y un crecimiento saludable.</p>
+                    <ul class="nutrients-list">
+                        <li><strong>Calcio:</strong> Kale, brócoli, naranjas, almendras</li>
+                        <li><strong>Hierro:</strong> Espinacas, lentejas, frutos secos, quinoa</li>
+                        <li><strong>Potasio:</strong> Plátanos, patatas, aguacates, tomates</li>
+                        <li><strong>Vitamina D:</strong> Champiñones, exposición solar</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Potencian el cerebro</h3>
+                    <p>Nutrientes como omega-3 y antioxidantes mejoran la memoria, la concentración y el aprendizaje.</p>
+                    <ul class="nutrients-list">
+                        <li><strong>Omega-3:</strong> Semillas de chía, nueces, aguacate</li>
+                        <li><strong>Antioxidantes:</strong> Arándanos, fresas, espinacas</li>
+                        <li><strong>Vitamina E:</strong> Almendras, espinacas, calabaza</li>
+                        <li><strong>Magnesio:</strong> Plátanos, espinacas, aguacate</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Aumentan la energía</h3>
+                    <p>Los carbohidratos naturales y vitaminas proporcionan energía sostenida para jugar y aprender.</p>
+                    <ul class="nutrients-list">
+                        <li><strong>Carbohidratos complejos:</strong> Batatas, maíz, calabaza</li>
+                        <li><strong>Vitamina B:</strong> Plátanos, espinacas, champiñones</li>
+                        <li><strong>Hierro:</strong> Espinacas, lentejas, frutos secos</li>
+                        <li><strong>Magnesio:</strong> Aguacate, plátanos, almendras</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fruits-veggies-categories">
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('imagenes/frutas-tropicales.jpg');"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Frutas Tropicales</h3>
+                        <p class="category-description">Sabores exóticos y colores vibrantes que aportan vitamina C y antioxidantes.</p>
+                        <div class="featured-items">
+                            <span class="featured-item">Mango</span>
+                            <span class="featured-item">Piña</span>
+                            <span class="featured-item">Papaya</span>
+                            <span class="featured-item">Maracuyá</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('imagenes/verduras-hoja.jpg');"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Verduras de Hoja Verde</h3>
+                        <p class="category-description">Ricas en hierro, calcio y vitaminas para fortalecer el cuerpo y la mente.</p>
+                        <div class="featured-items">
+                            <span class="featured-item">Espinaca</span>
+                            <span class="featured-item">Kale</span>
+                            <span class="featured-item">Lechuga</span>
+                            <span class="featured-item">Acelga</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('imagenes/frutas-bayas.jpg');"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Bayas y Frutos Rojos</h3>
+                        <p class="category-description">Pequeñas pero poderosas, llenas de antioxidantes para un corazón sano.</p>
+                        <div class="featured-items">
+                            <span class="featured-item">Fresas</span>
+                            <span class="featured-item">Arándanos</span>
+                            <span class="featured-item">Frambuesas</span>
+                            <span class="featured-item">Moras</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recetas">
+            <h2 class="section-title">Recetas Creativas</h2>
+            <p class="section-description">¡Transforma frutas y verduras en platos divertidos y deliciosos que los niños amarán!</p>
+
+            <div class="recipe-container">
+                <div class="recipe-card" data-recipe="ensalada-arcoiris">
+                    <div class="recipe-image" style="background-image: url('imagenes/ensalada-arcoiris.jpg');"></div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Ensalada Arcoíris</h3>
+                        <div class="recipe-details">
+                            <div class="recipe-detail"><i class="fas fa-clock"></i> 15 min</div>
+                            <div class="recipe-detail"><i class="fas fa-users"></i> 4 porciones</div>
+                            <div class="recipe-detail"><i class="fas fa-star"></i> Fácil</div>
+                        </div>
+                        <p class="recipe-description">Una explosión de colores y sabores con frutas y verduras frescas, perfecta para niños.</p>
+                        <button class="recipe-button" onclick="openModal('ensalada-arcoiris')">Ver Receta <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="recipe-card" data-recipe="pizza-verduras">
+                    <div class="recipe-image" style="background-image: url('imagenes/pizza-verduras.jpg');"></div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Pizza de Verduras</h3>
+                        <div class="recipe-details">
+                            <div class="recipe-detail"><i class="fas fa-clock"></i> 30 min</div>
+                            <div class="recipe-detail"><i class="fas fa-users"></i> 4 porciones</div>
+                            <div class="recipe-detail"><i class="fas fa-star"></i> Medio</div>
+                        </div>
+                        <p class="recipe-description">Una pizza saludable con una base de trigo integral y verduras coloridas.</p>
+                        <button class="recipe-button" onclick="openModal('pizza-verduras')">Ver Receta <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="recipe-card" data-recipe="batido-frutas">
+                    <div class="recipe-image" style="background-image: url('imagenes/batido-frutas.jpg');"></div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Batido de Frutas Tropicales</h3>
+                        <div class="recipe-details">
+                            <div class="recipe-detail"><i class="fas fa-clock"></i> 10 min</div>
+                            <div class="recipe-detail"><i class="fas fa-users"></i> 2 porciones</div>
+                            <div class="recipe-detail"><i class="fas fa-star"></i> Fácil</div>
+                        </div>
+                        <p class="recipe-description">Un batido refrescante y nutritivo con mango, piña y plátano.</p>
+                        <button class="recipe-button" onclick="openModal('batido-frutas')">Ver Receta <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="recipe-card" data-recipe="brochetas-fruta">
+                    <div class="recipe-image" style="background-image: url('imagenes/brochetas-fruta.jpg');"></div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Brochetas de Fruta</h3>
+                        <div class="recipe-details">
+                            <div class="recipe-detail"><i class="fas fa-clock"></i> 15 min</div>
+                            <div class="recipe-detail"><i class="fas fa-users"></i> 6 porciones</div>
+                            <div class="recipe-detail"><i class="fas fa-star"></i> Fácil</div>
+                        </div>
+                        <p class="recipe-description">Divertidas brochetas de frutas frescas, ideales para fiestas infantiles.</p>
+                        <button class="recipe-button" onclick="openModal('brochetas-fruta')">Ver Receta <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="recipe-card" data-recipe="sopa-verduras">
+                    <div class="recipe-image" style="background-image: url('imagenes/sopa-verduras.jpg');"></div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Sopa de Verduras</h3>
+                        <div class="recipe-details">
+                            <div class="recipe-detail"><i class="fas fa-clock"></i> 40 min</div>
+                            <div class="recipe-detail"><i class="fas fa-users"></i> 4 porciones</div>
+                            <div class="recipe-detail"><i class="fas fa-star"></i> Medio</div>
+                        </div>
+                        <p class="recipe-description">Una sopa reconfortante llena de verduras nutritivas y sabores suaves.</p>
+                        <button class="recipe-button" onclick="openModal('sopa-verduras')">Ver Receta <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculadora">
+            <h2 class="section-title">Calculadora de IMC</h2>
+            <p class="section-description">Calcula tu Índice de Masa Corporal para conocer tu estado nutricional y recibir recomendaciones personalizadas.</p>
+
+            <div class="imc-calculator">
+                <form class="imc-form" onsubmit="calculateIMC(event)">
+                    <div class="form-group">
+                        <label for="weight">Peso (kg)</label>
+                        <input type="number" id="weight" placeholder="Ej: 50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Altura (cm)</label>
+                        <input type="number" id="height" placeholder="Ej: 150" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="sex" value="male" id="male" required>
+                                <label for="male">Masculino</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="sex" value="female" id="female">
+                                <label for="female">Femenino</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="calculate-button">Calcular IMC</button>
+                </form>
+                <div class="imc-result" id="imcResult">
+                    <div class="result-number" id="imcValue"></div>
+                    <div class="result-text" id="imcText"></div>
+                    <div class="recommendations">
+                        <h4>Recomendaciones</h4>
+                        <ul id="imcRecommendations"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <div class="recipe-details" id="recipeDetails">
+                <!-- Recipe details will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <h3>Sobre Chefsitos</h3>
+                    <p>Chefsitos Creando Arte es un proyecto para enseñar a los niños a comer saludable de forma divertida, usando frutas y verduras como protagonistas.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#beneficios"><i class="fas fa-chevron-right"></i> Frutas y Verduras</a></li>
+                        <li><a href="#recetas"><i class="fas fa-chevron-right"></i> Recetas Creativas</a></li>
+                        <li><a href="#calculadora"><i class="fas fa-chevron-right"></i> Calculadora IMC</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Guía de Nutrición</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Actividades para Niños</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Chefsitos Creando Arte. Todos los derechos reservados.
+            </div>
+            <div class="authors">
+                Autores: <span>María Alejandra González</span> y <span>Thalia Cortés</span>, Nutricionistas.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const recipes = {
+            'ensalada-arcoiris': {
+                title: 'Ensalada Arcoíris',
+                image: 'imagenes/ensalada-arcoiris.jpg',
+                time: '15 min',
+                servings: '4 porciones',
+                difficulty: 'Fácil',
+                description: 'Una ensalada vibrante y divertida que combina frutas y verduras para deleitar a los niños.',
+                ingredients: [
+                    '1 taza de fresas, cortadas en rodajas',
+                    '1 zanahoria, rallada',
+                    '1 pimiento amarillo, cortado en cubos',
+                    '1 taza de espinacas baby',
+                    '1 mango, cortado en cubos',
+                    '2 cucharadas de semillas de girasol',
+                    'Jugo de 1 limón',
+                    '2 cucharadas de miel',
+                    '1 cucharada de aceite de oliva'
+                ],
+                preparation: [
+                    'Lava y corta todas las frutas y verduras según las indicaciones.',
+                    'En un tazón grande, mezcla las fresas, zanahoria, pimiento, espinacas y mango.',
+                    'En un tazón pequeño, combina el jugo de limón, miel y aceite de oliva para hacer el aderezo.',
+                    'Vierte el aderezo sobre la ensalada y mezcla suavemente.',
+                    'Espolvorea las semillas de girasol por encima antes de servir.'
+                ],
+                nutrition: [
+                    { label: 'Calorías', value: '120 kcal' },
+                    { label: 'Proteínas', value: '3g' },
+                    { label: 'Carbohidratos', value: '18g' },
+                    { label: 'Grasas', value: '4g' }
+                ]
+            },
+            'pizza-verduras': {
+                title: 'Pizza de Verduras',
+                image: 'imagenes/pizza-verduras.jpg',
+                time: '30 min',
+                servings: '4 porciones',
+                difficulty: 'Medio',
+                description: 'Una pizza saludable con una base de trigo integral y un arcoíris de verduras.',
+                ingredients: [
+                    '1 base de pizza de trigo integral',
+                    '1/2 taza de salsa de tomate',
+                    '1 taza de queso mozzarella rallado',
+                    '1/2 pimiento rojo, en rodajas',
+                    '1/2 pimiento verde, en rodajas',
+                    '1/2 taza de brócoli, en floretes',
+                    '1/4 taza de maíz',
+                    '1 cucharadita de orégano',
+                    '1 cucharada de aceite de oliva'
+                ],
+                preparation: [
+                    'Precalienta el horno a 200°C.',
+                    'Coloca la base de pizza en una bandeja para hornear.',
+                    'Extiende la salsa de tomate uniformemente sobre la base.',
+                    'Espolvorea el queso mozzarella sobre la salsa.',
+                    'Distribuye las verduras (pimientos, brócoli, maíz) sobre el queso.',
+                    'Espolvorea orégano y rocía con aceite de oliva.',
+                    'Hornea durante 15-20 minutos o hasta que el queso esté derretido y dorado.'
+                ],
+                nutrition: [
+                    { label: 'Calorías', value: '250 kcal' },
+                    { label: 'Proteínas', value: '10g' },
+                    { label: 'Carbohidratos', value: '30g' },
+                    { label: 'Grasas', value: '8g' }
+                ]
+            },
+            'batido-frutas': {
+                title: 'Batido de Frutas Tropicales',
+                image: 'imagenes/batido-frutas.jpg',
+                time: '10 min',
+                servings: '2 porciones',
+                difficulty: 'Fácil',
+                description: 'Un batido cremoso y refrescante que combina frutas tropicales para un impulso de energía.',
+                ingredients: [
+                    '1 mango, pelado y cortado',
+                    '1/2 piña, cortada en trozos',
+                    '1 plátano',
+                    '1 taza de jugo de naranja',
+                    '1/2 taza de yogur natural',
+                    '1 cucharada de miel (opcional)',
+                    'Cubos de hielo'
+                ],
+                preparation: [
+                    'Coloca el mango, piña, plátano, jugo de naranja y yogur en una licuadora.',
+                    'Añade miel si deseas un toque más dulce.',
+                    'Agrega unos cubos de hielo para un batido más fresco.',
+                    'Licúa hasta obtener una mezcla suave y homogénea.',
+                    'Sirve inmediatamente en vasos altos.'
+                ],
+                nutrition: [
+                    { label: 'Calorías', value: '180 kcal' },
+                    { label: 'Proteínas', value: '4g' },
+                    { label: 'Carbohidratos', value: '35g' },
+                    { label: 'Grasas', value: '2g' }
+                ]
+            },
+            'brochetas-fruta': {
+                title: 'Brochetas de Fruta',
+                image: 'imagenes/brochetas-fruta.jpg',
+                time: '15 min',
+                servings: '6 porciones',
+                difficulty: 'Fácil',
+                description: 'Brochetas coloridas y fáciles de preparar, perfectas para fiestas o meriendas.',
+                ingredients: [
+                    '1 taza de fresas, cortadas por la mitad',
+                    '1 taza de uvas',
+                    '1 mango, cortado en cubos',
+                    '1 kiwi, pelado y cortado en rodajas',
+                    '1 plátano, cortado en rodajas',
+                    'Palitos de brocheta',
+                    '2 cucharadas de yogur griego (para dip)'
+                ],
+                preparation: [
+                    'Lava y corta todas las frutas según las indicaciones.',
+                    'Ensarta las frutas en los palitos de brocheta, alternando colores y tipos.',
+                    'Coloca las brochetas en una bandeja.',
+                    'Sirve con yogur griego como dip opcional.'
+                ],
+                nutrition: [
+                    { label: 'Calorías', value: '90 kcal' },
+                    { label: 'Proteínas', value: '2g' },
+                    { label: 'Carbohidratos', value: '20g' },
+                    { label: 'Grasas', value: '1g' }
+                ]
+            },
+            'sopa-verduras': {
+                title: 'Sopa de Verduras',
+                image: 'imagenes/sopa-verduras.jpg',
+                time: '40 min',
+                servings: '4 porciones',
+                difficulty: 'Medio',
+                description: 'Una sopa cálida y nutritiva, ideal para días fríos o para introducir más verduras.',
+                ingredients: [
+                    '2 zanahorias, cortadas en rodajas',
+                    '1 calabacín, cortado en cubos',
+                    '1 papa, cortada en cubos',
+                    '1/2 taza de guisantes',
+                    '1 cebolla, picada',
+                    '2 dientes de ajo, picados',
+                    '4 tazas de caldo de verduras',
+                    '1 cucharada de aceite de oliva',
+                    'Sal y pimienta al gusto'
+                ],
+                preparation: [
+                    'Calienta el aceite de oliva en una olla grande a fuego medio.',
+                    'Sofríe la cebolla y el ajo hasta que estén transparentes.',
+                    'Añade las zanahorias, calabacín y papa, y cocina por 5 minutos.',
+                    'Vierte el caldo de verduras y lleva a ebullición.',
+                    'Reduce el fuego, tapa y cocina a fuego lento durante 20 minutos.',
+                    'Añade los guisantes y cocina por 5 minutos más.',
+                    'Sazona con sal y pimienta al gusto antes de servir.'
+                ],
+                nutrition: [
+                    { label: 'Calorías', value: '150 kcal' },
+                    { label: 'Proteínas', value: '5g' },
+                    { label: 'Carbohidratos', value: '25g' },
+                    { label: 'Grasas', value: '3g' }
+                ]
+            }
+        };
+
+        function openModal(recipeId) {
+            const recipe = recipes[recipeId];
+            const modal = document.getElementById('recipeModal');
+            const recipeDetails = document.getElementById('recipeDetails');
+
+            recipeDetails.innerHTML = `
+                <h2 class="modal-recipe-title">${recipe.title}</h2>
+                <div class="modal-recipe-image" style="background-image: url('${recipe.image}');"></div>
+                <div class="recipe-info">
+                    <div class="info-item"><i class="fas fa-clock"></i> ${recipe.time}</div>
+                    <div class="info-item"><i class="fas fa-users"></i> ${recipe.servings}</div>
+                    <div class="info-item"><i class="fas fa-star"></i> ${recipe.difficulty}</div>
+                </div>
+                <p class="recipe-description">${recipe.description}</p>
+                <div class="section-container ingredients-section">
+                    <h4><i class="fas fa-list"></i> Ingredientes</h4>
+                    <ul class="ingredients-list">
+                        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="section-container preparation-section">
+                    <h4><i class="fas fa-utensils"></i> Preparación</h4>
+                    <ol class="preparation-steps">
+                        ${recipe.preparation.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                </div>
+                <div class="section-container nutritional-info">
+                    <h4><i class="fas fa-leaf"></i> Información Nutricional</h4>
+                    <div class="nutrition-grid">
+                        ${recipe.nutrition.map(item => `
+                            <div class="nutrition-item">
+                                <div class="label">${item.label}</div>
+                                <div class="value">${item.value}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+            document.querySelector('.modal-content').scrollTop = 0;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('recipeModal');
+            modal.style.display = 'none';
+        }
+
+        function calculateIMC(event) {
+            event.preventDefault();
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            const sex = document.querySelector('input[name="sex"]:checked').value;
+            const imc = weight / (height * height);
+            const imcResult = document.getElementById('imcResult');
+            const imcValue = document.getElementById('imcValue');
+            const imcText = document.getElementById('imcText');
+            const imcRecommendations = document.getElementById('imcRecommendations');
+
+            let category = '';
+            let recommendations = [];
+
+            if (imc < 18.5) {
+                category = 'Bajo peso';
+                recommendations = [
+                    'Incorpora más frutas ricas en calorías como aguacates y plátanos.',
+                    'Añade frutos secos y semillas a tus comidas.',
+                    'Consulta a un nutricionista para un plan personalizado.'
+                ];
+            } else if (imc >= 18.5 && imc < 25) {
+                category = 'Peso normal';
+                recommendations = [
+                    'Mantén una dieta equilibrada con frutas y verduras variadas.',
+                    'Incluye actividad física regular.',
+                    'Sigue consumiendo alimentos ricos en fibra.'
+                ];
+            } else if (imc >= 25 && imc < 30) {
+                category = 'Sobrepeso';
+                recommendations = [
+                    'Aumenta el consumo de verduras bajas en calorías como espinacas y brócoli.',
+                    'Reduce los carbohidratos refinados y opta por frutas frescas.',
+                    'Realiza ejercicio moderado 4-5 veces por semana.'
+                ];
+            } else {
+                category = 'Obesidad';
+                recommendations = [
+                    'Prioriza verduras y frutas bajas en azúcar.',
+                    'Evita alimentos procesados y bebidas azucaradas.',
+                    'Consulta a un profesional para un plan de pérdida de peso.'
+                ];
+            }
+
+            imcValue.textContent = imc.toFixed(1);
+            imcText.innerHTML = `Tu IMC indica: <span>${category}</span>`;
+            imcRecommendations.innerHTML = recommendations.map(rec => `<li>${rec}</li>`).join('');
+            imcResult.classList.add('result-visible');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('recipeModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
